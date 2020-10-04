@@ -1,7 +1,7 @@
 /**
  * Done: Create a keydown listener to track what keys are hit
  * Done: Create a Beat class to represent the beat object in utils.js
- * TODO: Complete triggerBeat() to play upon the press of a,s,d,f,g,h,j,k,l
+ * Done: Complete triggerBeat() to play upon the press of a,s,d,f,g,h,j,k,l
  * TODO: Button pt1: Initialize color and element values
  * TODO: Button pt2: Set button color upon initialization | Initialize button in beats["65"]
  * TODO: Button pt3: Complete select function to set the color and shadow of button upon pressing
@@ -49,14 +49,16 @@ let beats = {
  * Function to play the beat upon a press of key
  */
 triggerBeat = (event) => {
-    console.log("hit key down")
+    const keyCode = event.keyCode;
+    if (keyCode in beats) {
+        console.log("You pressed " + event.key)
+        let keyPress = beats[keyCode];
+        keyPress.beat.play();
+    }
 
 }
 
 /**
  * Keydown listener to fire triggerBeat function
  */
-document.addEventListener("keydown", (event) => {
-    console.log(event);
-    console.log(event.keyCode);
-})
+document.addEventListener('keydown', triggerBeat)
